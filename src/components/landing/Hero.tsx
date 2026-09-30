@@ -52,28 +52,40 @@ export default function Hero() {
 
   return (
     <Container className="mx-auto max-w-5xl">
+      <div className="align-center flex gap-4">
+        <Image
+          src={avatar}
+          alt="hero"
+          width={100}
+          height={100}
+          className="size-24 rounded-full bg-blue-300 dark:bg-yellow-300"
+        />
+        <div className="mt-8 text-xl font-bold">
+          <h3>{name}</h3>
+          <p
+            data-oneko-dodge="true"
+            className="text-secondary flex flex-wrap items-center gap-x-1 gap-y-1 text-[14px]"
+          >
+            {title.map((item, index) => (
+              <React.Fragment key={index}>
+                <span>{item}</span>
+                {index < title.length - 1 && <span>·</span>}
+              </React.Fragment>
+            ))}
+          </p>
+        </div>
+      </div>
       {/* Image */}
-      <Image
-        src={avatar}
-        alt="hero"
-        width={100}
-        height={100}
-        className="size-24 rounded-full bg-blue-300 dark:bg-yellow-300"
-      />
 
       {/* Text Area */}
-      <div className="mt-8 flex flex-col gap-2">
-        <h1 className="text-4xl font-bold">
-          Hi, I&apos;m {name} — <span className="text-secondary">{title}</span>
-        </h1>
-
-        <div className="mt-4 flex flex-wrap items-center gap-x-1.5 gap-y-2 text-base whitespace-pre-wrap text-neutral-500 md:text-lg">
+      <div className="flex flex-col gap-2">
+        <div className="mt-2 flex flex-wrap items-center gap-x-1.5 gap-y-2 text-[12px] whitespace-pre-wrap text-neutral-500 md:text-[14px]">
           {renderDescription()}
         </div>
       </div>
 
       {/* Buttons */}
-      <div className="mt-8 flex gap-4">
+      <div className="mt-4 flex gap-4">
         {buttons.map((button, index) => {
           const IconComponent =
             buttonIcons[button.icon as keyof typeof buttonIcons];
@@ -98,7 +110,7 @@ export default function Hero() {
       </div>
 
       {/* Social Links */}
-      <div className="mt-8 flex gap-2">
+      <div className="mt-4 flex gap-2">
         {socialLinks.map((link) => (
           <Tooltip key={link.name} delayDuration={0}>
             <TooltipTrigger asChild>
